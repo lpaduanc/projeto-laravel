@@ -31,7 +31,9 @@ class PostController extends Controller
     {
         Post::create($storeUpdatePost->all());
 
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('message', 'Post criado com sucesso.');
     }
 
     public function show($id)

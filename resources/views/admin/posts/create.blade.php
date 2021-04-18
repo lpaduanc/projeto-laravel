@@ -1,6 +1,6 @@
 <h1>Criar Novo Post</h1>
 
-@if ($erros->any())
+@if ($errors->any())
     <ul>
         @foreach ($errors->all() as $error)
             <li>

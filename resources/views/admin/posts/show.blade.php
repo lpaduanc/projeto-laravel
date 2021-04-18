@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<form action="{{ route('posts.destroy') }}" method="post">
+<form action="{{ route('posts.destroy', $post->id) }}" method="post">
     @csrf
     @method('DELETE')
     <button type="submit">Apagar</button>
