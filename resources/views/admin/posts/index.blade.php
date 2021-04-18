@@ -1,4 +1,4 @@
-<a href="{{ route('post.create') }}">Criar Novo Post</a>
+<a href="{{ route('posts.create') }}">Criar Novo Post</a>
 
 <hr>
 
@@ -6,11 +6,11 @@
     <div>
         {{ session('message') }}
     </div>
+    <hr>
 @endif
-<hr>
 
 <h1>Posts</h1>
 
 @foreach ($posts as $post)
-    <p>{{ $post->title }} - <a href="{{ route('posts.show') }}">ver post</a></p>
+    <p>{{ $post->title }} - <a href="{{ route('posts.show', $post->id) }}">ver post</a></p>
 @endforeach
