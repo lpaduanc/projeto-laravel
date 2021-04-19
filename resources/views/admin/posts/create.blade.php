@@ -1,5 +1,11 @@
-<h1>Criar Novo Post</h1>
+@extends('admin.layouts.app')
 
-<form action="{{ route('posts.store') }}" method="post">
-    @include('admin.posts.partials.form')
-</form>
+@section('title', 'Criando novo post')
+
+@section('content')
+    <h1>Criar Novo Post</h1>
+
+    <form action="{{ route('posts.store') }}" method="post">
+        @include('admin.posts.partials.form')
+    </form>
+@endsection

@@ -1,17 +1,23 @@
-<h1>Esss é o post {{ $post->title }}</h1>
+@extends('admin.layouts.app')
 
-<ul>
-    <li>
-        <strong>Título: </strong>{{ $post->title }}
-    </li>
+@section('title', 'Detalhes do post')
 
-    <li>
-        <strong>Conteúdo: </strong>{{ $post->content }}
-    </li>
-</ul>
+@section('content')
+    <h1>Esss é o post {{ $post->title }}</h1>
 
-<form action="{{ route('posts.destroy', $post->id) }}" method="post">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Apagar</button>
-</form>
+    <ul>
+        <li>
+            <strong>Título: </strong>{{ $post->title }}
+        </li>
+
+        <li>
+            <strong>Conteúdo: </strong>{{ $post->content }}
+        </li>
+    </ul>
+
+    <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Apagar</button>
+    </form>
+@endsection
