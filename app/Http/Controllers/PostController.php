@@ -20,7 +20,7 @@ class PostController extends Controller
         return view ('admin.posts.index', [
             // 'posts' => Post::get(),
             // 'posts' => Post::orderBy('id', 'ASC')->paginate(),
-            'posts' => Post::latest()->paginate(1),
+            'posts' => Post::latest()->paginate(),
         ]);
     }
 
@@ -95,7 +95,7 @@ class PostController extends Controller
 
         $posts = Post::where('title', "{$this->request->search}")
             ->orWhere('content', 'LIKE', "%{$this->request->search}%")
-            ->paginate(1);
+            ->paginate();
 
         return view('admin.posts.index', [
             'posts' => $posts,
