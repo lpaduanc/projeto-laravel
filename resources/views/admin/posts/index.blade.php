@@ -12,5 +12,18 @@
 <h1>Posts</h1>
 
 @foreach ($posts as $post)
-    <p>{{ $post->title }} - <a href="{{ route('posts.show', $post->id) }}">ver post</a></p>
+    <p>{{ $post->title }} -
+        <a href="{{ route('posts.show', $post->id) }}">
+            ver post
+        </a>
+            --
+        <a href="{{ route('posts.edit', $post->id) }}">
+            editar post
+        </a>
+    </p>
 @endforeach
+
+<hr>
+
+{{-- paginação --}}
+{{ $posts->links() }}

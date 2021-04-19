@@ -18,7 +18,9 @@ class PostController extends Controller
     public function index()
     {
         return view ('admin.posts.index', [
-            'posts' => Post::get(),
+            // 'posts' => Post::get(),
+            // 'posts' => Post::orderBy('id', 'ASC')->paginate(),
+            'posts' => Post::latest()->paginate(),
         ]);
     }
 
@@ -47,6 +49,30 @@ class PostController extends Controller
         return view('admin.posts.show', [
             'post' => $post,
         ]);
+    }
+
+    public function edit($id)
+    {
+        if (!$post = Post::find($id)) {
+            return redirect()->back();
+        }
+
+        return view('admin.posts.edit', [
+            'post' => $post,
+        ]);
+    }
+
+    public function update(StoreUpdatePost $storeUpdatePost, $id)
+    {
+        if (!$post = Post::find($id)) {
+            return redirect()->back();
+        }
+
+        $post->update($storeUpdatePost->all());
+
+        return redirect()
+            ->route('posts.index')
+            ->with('message', 'Post atualizado com sucesso.');
     }
 
     public function destroy($id)
