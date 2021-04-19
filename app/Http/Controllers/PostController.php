@@ -20,7 +20,7 @@ class PostController extends Controller
         return view ('admin.posts.index', [
             // 'posts' => Post::get(),
             // 'posts' => Post::orderBy('id', 'ASC')->paginate(),
-            'posts' => Post::latest()->paginate(),
+            'posts' => Post::latest()->paginate(1),
         ]);
     }
 
@@ -86,5 +86,20 @@ class PostController extends Controller
         return redirect()
             ->route('posts.index')
             ->with('message', 'Post excluído com sucesso');
+    }
+
+    public function search()
+    {
+        //necessário para preservar a paginação
+        $filters = $this->request->except('_token');
+
+        $posts = Post::where('title', "{$this->request->search}")
+            ->orWhere('content', 'LIKE', "%{$this->request->search}%")
+            ->paginate(1);
+
+        return view('admin.posts.index', [
+            'posts' => $posts,
+            'filters' => $filters,
+        ]);
     }
 }
