@@ -10,6 +10,7 @@ Route::get('/', function () {
 });
 
 
+Route::any('/posts/search', [PostController::class, 'search'])->name('posts.search');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

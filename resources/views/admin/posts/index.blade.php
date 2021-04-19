@@ -9,6 +9,12 @@
     <hr>
 @endif
 
+<form action="{{ route('posts.search') }}" method="post">
+    @csrf
+    <input type="text" name="search" id="search" placeholder="pesquisar">
+    <button type="submit">pesquisar</button>
+</form>
+
 <h1>Posts</h1>
 
 @foreach ($posts as $post)
@@ -26,4 +32,9 @@
 <hr>
 
 {{-- paginação --}}
-{{ $posts->links() }}
+@if (isset($filters))
+    {{ $posts->appends($filters)->links() }}
+    
+@else
+    {{ $posts->links() }}   
+@endif
