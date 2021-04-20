@@ -19,3 +19,9 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
